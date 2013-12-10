@@ -6,6 +6,9 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
-  res.render('index', { title: 'St.Albans Site' });
+/*exports.index = function(req, res){
+  res.render('index', { title: 'St.Albans Christian Assembly Site' });
+};*/
+exports.index = {
+    title: 'St.Albans Christian Assembly Site'
 };
