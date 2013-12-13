@@ -3,14 +3,16 @@
  * Module dependencies.
  */
 
+// jade double space
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mongoose = require('mongoose')
+  , _ = require('underscore')
 
 var app = express();
-
+var arrays;
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -27,13 +29,18 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/:page?', function(req, res) {
-    var page = req.params.page;
-    page = page ? page.toLowerCase() : 'index';
-    res.render(page, routes[page]);
-})
-//app.get('/', routes.index);
-//app.get('/users', user.list);
+
+app.get('/', routes["index"]);
+
+
+
+
+var arrays = ["aboutus", "contact"]; //add other routes here, loops
+
+_.map(arrays, function(page) {
+ app.get("/" + page,  routes["" + page]);
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
