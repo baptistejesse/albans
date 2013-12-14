@@ -19,6 +19,6 @@ exports.aboutus = function(req, res){
 
 
 exports.contact = function(req, res){
-  res.render('contact', { title: 'Contact' });
+  res.render('contact', { title: 'Contact', email: "info@stalbans.org",  phone: "347222222"});
 };
 
